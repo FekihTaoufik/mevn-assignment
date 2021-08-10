@@ -1,4 +1,4 @@
-# app
+# index
 
 ## Project setup
 ```
