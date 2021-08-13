@@ -3,12 +3,24 @@
     <v-main>
       <v-container class="fill-height">
         <v-row class="justify-center align-center align-content-center">
-          <v-col cols="12" md="8" lg="6">
-            <v-card>
-              <v-app-bar color="primary lighten-1" dark>
+          <v-col cols="11" md="10" lg="7">
+            <v-card class="elevation-4">
+              <v-app-bar
+                class="elevation-0"
+                :color="`${
+                  !$store.getters.isAuthenticated
+                    ? 'grey'
+                    : $store.getters.isAdmin
+                    ? 'amber darken-2'
+                    : 'primary lighten-1'
+                }`"
+                dark
+              >
                 <v-btn :to="{ name: 'Comments' }" text>
-                  <v-icon left>mdi-comment-text-multiple-outline</v-icon>
-                  Comments
+                  <v-icon :left="$vuetify.breakpoint.mdAndUp"
+                    >mdi-comment-text-multiple-outline</v-icon
+                  >
+                  <span v-if="$vuetify.breakpoint.mdAndUp"> Comments </span>
                 </v-btn>
                 <v-slide-x-transition group mode="out-in">
                   <template
@@ -17,12 +29,16 @@
                     "
                   >
                     <v-btn :to="{ name: 'Users' }" text key="1">
-                      <v-icon left>mdi-account-group</v-icon>
-                      Users
+                      <v-icon :left="$vuetify.breakpoint.mdAndUp"
+                        >mdi-account-group</v-icon
+                      >
+                      <span v-if="$vuetify.breakpoint.mdAndUp"> Users </span>
                     </v-btn>
                     <v-btn :to="{ name: 'Channels' }" text key="2">
-                      <v-icon left>mdi-vector-link</v-icon>
-                      Channels
+                      <v-icon :left="$vuetify.breakpoint.mdAndUp"
+                        >mdi-vector-link</v-icon
+                      >
+                      <span v-if="$vuetify.breakpoint.mdAndUp"> Channels </span>
                     </v-btn>
                   </template>
                 </v-slide-x-transition>
@@ -39,12 +55,13 @@
                   <v-menu transition="slide-y-transition" bottom v-else>
                     <template v-slot:activator="{ on, attrs }">
                       <v-btn dark text v-bind="attrs" v-on="on">
-                        <v-icon left>mdi-account-circle</v-icon> Ahmed sylla
+                        <v-icon left>mdi-account-circle</v-icon>
+                        {{ $store.state.user.name }}
                         <v-icon right>mdi-chevron-down</v-icon>
                       </v-btn>
                     </template>
                     <v-list dense>
-                      <v-list-item @click="$store.dispatch('unAuthenticate')">
+                      <v-list-item @click="logout">
                         <v-list-item-icon
                           ><v-icon>mdi-logout</v-icon></v-list-item-icon
                         >
@@ -55,6 +72,7 @@
                 </v-slide-x-transition>
               </v-app-bar>
               <v-card-text
+                class="pa-0 overflow-hidden"
                 :style="{
                   minHeight: '500px',
                   transition: 'all .2s',
@@ -73,11 +91,18 @@
 </template>
 
 <script>
+import { AuthService } from "./services";
+
 export default {
   name: "App",
 
-  data: () => ({
-    //
-  }),
+  data: () => ({}),
+  methods: {
+    logout() {
+      AuthService.logOut().then(() => {
+        this.$toast("Logged out !", { type: "success" });
+      });
+    },
+  },
 };
 </script>

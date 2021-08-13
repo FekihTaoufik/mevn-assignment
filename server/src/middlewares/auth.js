@@ -8,13 +8,17 @@ const isAuthenticated = async (req, res, next) => {
     const token = authHeader && authHeader.split(' ')[1]
 
     if (token == null)
-        return res.status(httpStatus.UNAUTHORIZED).send('Not authenticated')
+        return res
+            .status(httpStatus.UNAUTHORIZED)
+            .send('Not authenticated, please consider to login 🤷')
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET)
         const user = await User.findOne({ _id: decoded.id })
         if (!user)
-            return res.status(httpStatus.UNAUTHORIZED).send('Not authenticated')
+            return res
+                .status(httpStatus.UNAUTHORIZED)
+                .send('Not authenticated, please consider to login 🤷')
 
         req.user = _.pick(user, ['role', 'id', 'email', 'name'])
 

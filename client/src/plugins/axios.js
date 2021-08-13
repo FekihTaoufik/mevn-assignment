@@ -3,16 +3,10 @@
 import Vue from "vue";
 import axios from "axios";
 import store from "@/store";
+import { errorHandler } from "../utils/errorHandler";
 
-// Full config:  https://github.com/axios/axios#request-config
-// axios.defaults.baseURL = process.env.baseURL || process.env.apiUrl || '';
-// axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
-// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-console.log(process.env);
 let config = {
   baseURL: process.env.VUE_APP_API_ROOT_URL || "",
-  // timeout: 60 * 1000, // Timeout
-  // withCredentials: true, // Check cross-site Access-Control
 };
 
 const _axios = axios.create(config);
@@ -36,8 +30,13 @@ _axios.interceptors.response.use(
     // Do something with response data
     return response;
   },
-  function (error) {
-    // Do something with response error
+  async function (error) {
+    errorHandler(Vue, error);
+    if (error.response.status == 401) {
+      store.dispatch("unAuthenticate");
+      if (window.location.pathname !== "/") window.location = "/";
+    }
+
     return Promise.reject(error);
   }
 );

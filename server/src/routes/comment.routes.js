@@ -5,11 +5,7 @@ const { validate, auth } = require('../middlewares')
 const router = express.Router()
 
 router
-    .get(
-        '/:id?',
-        [auth.isAuthenticated, validate(commentValidation.get)],
-        commentController.get
-    )
+    .get('/:id?', [validate(commentValidation.get)], commentController.get)
     .post(
         '/',
         [auth.isAuthenticated, validate(commentValidation.create)],

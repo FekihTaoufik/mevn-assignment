@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const { toJSON, paginate } = require('./plugins')
+const { toJSON } = require('./plugins')
 
 const commentSchema = mongoose.Schema(
     {
@@ -8,7 +8,7 @@ const commentSchema = mongoose.Schema(
             required: true,
             trim: true,
         },
-        userId: {
+        user: {
             type: mongoose.SchemaTypes.ObjectId,
             ref: 'User',
             required: true,
@@ -19,7 +19,7 @@ const commentSchema = mongoose.Schema(
         georeferenceId: {
             type: Number,
         },
-        channelId: {
+        channel: {
             type: mongoose.SchemaTypes.ObjectId,
             ref: 'Channel',
             required: false,
@@ -32,7 +32,6 @@ const commentSchema = mongoose.Schema(
 
 // add plugin that converts mongoose to json
 commentSchema.plugin(toJSON)
-commentSchema.plugin(paginate)
 
 /**
  * @typedef Comment

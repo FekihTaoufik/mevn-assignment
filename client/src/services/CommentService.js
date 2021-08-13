@@ -1,28 +1,23 @@
 const HTTP = window.axios;
+import { pickBy } from "lodash";
 export default {
   get(id = null) {
     return new Promise((resolve, reject) => {
       HTTP.get(`/comment${id ? "/" + id : ""}`)
         .then((r) => {
-          resolve(r);
+          resolve(r.data);
         })
         .catch((err) => reject(err));
     });
   },
-  create(id, comment) {
+  create(comment) {
+    // Api doesn't like null values => return type validation error (unwanted)
+    // lodash's "pickBy" function removes null attributes
+
     return new Promise((resolve, reject) => {
-      HTTP.post(`/comment`, comment)
+      HTTP.post(`/comment`, pickBy(comment))
         .then((r) => {
-          resolve(r);
-        })
-        .catch((err) => reject(err));
-    });
-  },
-  patch(id, comment) {
-    return new Promise((resolve, reject) => {
-      HTTP.patch(`/comment/${id}`, comment)
-        .then((r) => {
-          resolve(r);
+          resolve(r.data);
         })
         .catch((err) => reject(err));
     });
@@ -31,7 +26,7 @@ export default {
     return new Promise((resolve, reject) => {
       HTTP.delete(`/comment/${id}`)
         .then((r) => {
-          resolve(r);
+          resolve(r.data);
         })
         .catch((err) => reject(err));
     });

@@ -11,7 +11,7 @@ const signIn = (req, res) => {
 
         if (!user || !(await user.isPasswordMatch(password)))
             return res
-                .status(httpStatus.UNAUTHORIZED)
+                .status(httpStatus.NOT_FOUND)
                 .send('Incorrect email or password')
 
         const token = await jwt.sign(

@@ -2,7 +2,6 @@ const { User } = require('../models')
 const httpStatus = require('http-status')
 const get = async (req, res) => {
     const { id } = req.params
-    const { page, limit, sortBy } = req.query
     if (id)
         User.findById(id, (err, user) => {
             if (err) return res.status(httpStatus.BAD_REQUEST).send(err.message)
@@ -14,13 +13,11 @@ const get = async (req, res) => {
             res.send(user)
         })
     else
-        User.paginate({}, { page, limit, sortBy })
-            .then((result) => {
-                res.send(result)
-            })
-            .catch((err) => {
-                res.status(httpStatus.BAD_REQUEST).send(err.message)
-            })
+        User.find({}, (err, users) => {
+            if (err) return res.status(httpStatus.BAD_REQUEST).send(err.message)
+
+            res.send(users)
+        })
 }
 
 const create = (req, res) => {

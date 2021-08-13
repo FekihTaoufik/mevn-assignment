@@ -1,9 +1,10 @@
 const mongoose = require('mongoose')
-const { toJSON, paginate } = require('./plugins')
+const { toJSON } = require('./plugins')
+const Comment = require('./comment.model')
 
 const channelSchema = mongoose.Schema(
     {
-        userId: {
+        user: {
             type: mongoose.SchemaTypes.ObjectId,
             ref: 'User',
             required: true,
@@ -22,7 +23,12 @@ const channelSchema = mongoose.Schema(
 
 // add plugin that converts mongoose to json
 channelSchema.plugin(toJSON)
-channelSchema.plugin(paginate)
+
+channelSchema.post('findOneAndRemove', function (doc, next) {
+    Comment.remove({ channel: doc._id }, (err, doc) => {
+        next()
+    })
+})
 
 /**
  * @typedef Channel

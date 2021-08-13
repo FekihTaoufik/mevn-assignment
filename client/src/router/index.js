@@ -1,17 +1,12 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import { Comments, About, Login, Channels, Users } from "@/views";
-
+import { Comments, Login, Channels, Users, UserEditor } from "@/views";
+import { isAuthenticatedAdmin } from "./guards";
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "Index",
-    redirect: "/comments",
-  },
-  {
-    path: "/comments",
     name: "Comments",
     component: Comments,
   },
@@ -19,30 +14,29 @@ const routes = [
     path: "/users",
     name: "Users",
     component: Users,
+    beforeEnter: isAuthenticatedAdmin,
+  },
+  {
+    path: "/users/:id?/editor",
+    name: "UserEditor",
+    component: UserEditor,
+    beforeEnter: isAuthenticatedAdmin,
   },
   {
     path: "/channels",
     name: "Channels",
     component: Channels,
+    beforeEnter: isAuthenticatedAdmin,
   },
   {
     path: "/login",
     name: "Login",
     component: Login,
   },
-  {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: About,
-  },
 ];
 
 const router = new VueRouter({
   mode: "history",
-  base: process.env.BASE_URL,
   routes,
 });
 

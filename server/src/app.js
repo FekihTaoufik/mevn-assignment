@@ -2,7 +2,6 @@ require('dotenv').config()
 
 const express = require('express')
 const cors = require('cors')
-const passport = require('passport')
 const xss = require('xss-clean')
 const mongoSanitize = require('express-mongo-sanitize')
 const routes = require('./routes')
@@ -20,9 +19,6 @@ app.use(express.urlencoded({ extended: true }))
 // sanitize request data
 app.use(xss())
 app.use(mongoSanitize())
-
-// jwt authentication
-app.use(passport.initialize())
 
 app.use('/', routes)
 

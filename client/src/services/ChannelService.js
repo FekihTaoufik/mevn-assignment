@@ -4,7 +4,7 @@ export default {
     return new Promise((resolve, reject) => {
       HTTP.get(`/channel${id ? "/" + id : ""}`)
         .then((r) => {
-          resolve(r);
+          resolve(r.data);
         })
         .catch((err) => reject(err));
     });
@@ -13,7 +13,7 @@ export default {
     return new Promise((resolve, reject) => {
       HTTP.delete(`/channel/${id}`)
         .then((r) => {
-          resolve(r);
+          resolve(r.data);
         })
         .catch((err) => reject(err));
     });

@@ -1,0 +1,19 @@
+[
+    {
+        "model": "User",
+        "documents": [
+            {
+                "name": "John doe",
+                "email" : "admin@test.com",
+                "password" : "SuperAdmin1",
+                "role": "admin"
+            },
+            {
+                "name": "Mark Trenton",
+                "email" : "user@test.com",
+                "password" : "SuperUser1",
+                "role":  "user"
+            }
+        ]
+    }
+]

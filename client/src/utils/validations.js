@@ -12,6 +12,7 @@ export const email = (v) => {
 };
 
 export const password = (v) => {
+  if (!v) return true;
   const re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm;
   return (
     re.test(v) ||

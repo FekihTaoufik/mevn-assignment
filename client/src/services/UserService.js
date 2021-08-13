@@ -4,16 +4,16 @@ export default {
     return new Promise((resolve, reject) => {
       HTTP.get(`/user${id ? "/" + id : ""}`)
         .then((r) => {
-          resolve(r);
+          resolve(r.data);
         })
         .catch((err) => reject(err));
     });
   },
-  create(id, user) {
+  create(user) {
     return new Promise((resolve, reject) => {
       HTTP.post(`/user`, user)
         .then((r) => {
-          resolve(r);
+          resolve(r.data);
         })
         .catch((err) => reject(err));
     });
@@ -22,7 +22,7 @@ export default {
     return new Promise((resolve, reject) => {
       HTTP.patch(`/user/${id}`, user)
         .then((r) => {
-          resolve(r);
+          resolve(r.data);
         })
         .catch((err) => reject(err));
     });
@@ -31,7 +31,7 @@ export default {
     return new Promise((resolve, reject) => {
       HTTP.delete(`/user/${id}`)
         .then((r) => {
-          resolve(r);
+          resolve(r.data);
         })
         .catch((err) => reject(err));
     });
