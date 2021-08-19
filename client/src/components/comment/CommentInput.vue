@@ -1,12 +1,13 @@
 <template>
   <v-form ref="form" v-model="isFormValid">
     <v-text-field
+      data-testid="comment-input"
       autofocus
       class="comment-text-field pt-0"
       placeholder="Type your comment..."
       v-model.trim="comment.body"
       height="80"
-      @input="handleInput"
+      @input="$emit('input', this.comment)"
       @keyup.enter="handleSend"
     >
       <template v-slot:append>
@@ -18,7 +19,7 @@
           clearable
           label="orderId"
           dense
-          @input="handleInput"
+          @input="$emit('input', this.comment)"
           v-model="comment.orderId"
           :items="items.orderId"
           :style="{ width: '150px' }"
@@ -31,7 +32,7 @@
           clearable
           label="georefId"
           dense
-          @input="handleInput"
+          @input="$emit('input', this.comment)"
           v-model="comment.georeferenceId"
           :items="items.georeferenceId"
           :style="{ width: '150px' }"
@@ -92,9 +93,6 @@ export default {
     handleSend() {
       this.$refs.form.validate();
       if (this.isFormValid) this.$emit("enter");
-    },
-    handleInput() {
-      this.$emit("input", this.comment);
     },
   },
 };

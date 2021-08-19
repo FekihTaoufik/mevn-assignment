@@ -1,8 +1,9 @@
-const HTTP = window.axios;
+import axios from "./axios";
 export default {
   get(id = null) {
     return new Promise((resolve, reject) => {
-      HTTP.get(`/channel${id ? "/" + id : ""}`)
+      axios
+        .get(`/channel${id ? "/" + id : ""}`)
         .then((r) => {
           resolve(r.data);
         })
@@ -11,7 +12,8 @@ export default {
   },
   remove(id) {
     return new Promise((resolve, reject) => {
-      HTTP.delete(`/channel/${id}`)
+      axios
+        .delete(`/channel/${id}`)
         .then((r) => {
           resolve(r.data);
         })

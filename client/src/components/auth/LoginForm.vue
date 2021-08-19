@@ -6,6 +6,7 @@
         <v-card-text>
           <v-form ref="form" v-model="isFormValid">
             <v-text-field
+              name="email"
               v-model="login.email"
               validate-on-blur
               :rules="rules.email"
@@ -14,6 +15,7 @@
               type="text"
             ></v-text-field>
             <v-text-field
+              name="password"
               v-model="login.password"
               validate-on-blur
               :rules="rules.password"
@@ -34,6 +36,7 @@
         </v-card-text>
         <v-card-actions class="px-4">
           <v-btn
+            data-testid="submit-btn"
             block
             color="primary"
             @click="submit"

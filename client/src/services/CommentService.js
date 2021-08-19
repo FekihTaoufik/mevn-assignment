@@ -1,9 +1,10 @@
-const HTTP = window.axios;
+import axios from "./axios";
 import { pickBy } from "lodash";
 export default {
   get(id = null) {
     return new Promise((resolve, reject) => {
-      HTTP.get(`/comment${id ? "/" + id : ""}`)
+      axios
+        .get(`/comment${id ? "/" + id : ""}`)
         .then((r) => {
           resolve(r.data);
         })
@@ -15,7 +16,8 @@ export default {
     // lodash's "pickBy" function removes null attributes
 
     return new Promise((resolve, reject) => {
-      HTTP.post(`/comment`, pickBy(comment))
+      axios
+        .post(`/comment`, pickBy(comment))
         .then((r) => {
           resolve(r.data);
         })
@@ -24,7 +26,8 @@ export default {
   },
   remove(id) {
     return new Promise((resolve, reject) => {
-      HTTP.delete(`/comment/${id}`)
+      axios
+        .delete(`/comment/${id}`)
         .then((r) => {
           resolve(r.data);
         })

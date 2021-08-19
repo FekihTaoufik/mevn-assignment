@@ -36,10 +36,7 @@ export default {
   name: "Channels",
 
   created() {
-    // some timeout to show the loading animation - Good for UX :)
-    setTimeout(() => {
-      this.getChannels();
-    }, 700);
+    this.getChannels();
   },
 
   data() {
@@ -81,7 +78,7 @@ export default {
     removeChannel(channel) {
       if (confirm("Are you sure you want to remove this channel ?"))
         ChannelService.remove(channel.id).then(() => {
-          this.channels = this.channels.filter((c) => c !== channel);
+          this.channels = this.channels.filter((c) => c.id !== channel.id);
           this.$toast("Channel removed !", { type: "success" });
         });
     },

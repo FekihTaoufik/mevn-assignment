@@ -1,5 +1,5 @@
 import Vue from "vue";
-import "./plugins/axios";
+import "./services/axios";
 import "./plugins/toast";
 import App from "./App.vue";
 import router from "./router";

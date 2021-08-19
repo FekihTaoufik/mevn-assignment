@@ -1,8 +1,9 @@
-const HTTP = window.axios;
+import axios from "./axios";
 export default {
   get(id = null) {
     return new Promise((resolve, reject) => {
-      HTTP.get(`/user${id ? "/" + id : ""}`)
+      axios
+        .get(`/user${id ? "/" + id : ""}`)
         .then((r) => {
           resolve(r.data);
         })
@@ -11,7 +12,8 @@ export default {
   },
   create(user) {
     return new Promise((resolve, reject) => {
-      HTTP.post(`/user`, user)
+      axios
+        .post(`/user`, user)
         .then((r) => {
           resolve(r.data);
         })
@@ -20,7 +22,8 @@ export default {
   },
   patch(id, user) {
     return new Promise((resolve, reject) => {
-      HTTP.patch(`/user/${id}`, user)
+      axios
+        .patch(`/user/${id}`, user)
         .then((r) => {
           resolve(r.data);
         })
@@ -29,7 +32,8 @@ export default {
   },
   remove(id) {
     return new Promise((resolve, reject) => {
-      HTTP.delete(`/user/${id}`)
+      axios
+        .delete(`/user/${id}`)
         .then((r) => {
           resolve(r.data);
         })

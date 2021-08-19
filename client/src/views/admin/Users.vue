@@ -90,10 +90,7 @@ export default {
 
   components: { UserAvatar },
   created() {
-    // some timeout to show the loading animation - Good for UX :)
-    setTimeout(() => {
-      this.getUsers();
-    }, 700);
+    this.getUsers();
   },
   data() {
     return {
@@ -132,7 +129,7 @@ export default {
     removeUser(user) {
       if (confirm("Are you sure you want to remove this user ?"))
         UserService.remove(user.id).then(() => {
-          this.users = this.users.filter((u) => u !== user);
+          this.users = this.users.filter((u) => u.id !== user.id);
           this.$toast("User removed !", { type: "success" });
         });
     },

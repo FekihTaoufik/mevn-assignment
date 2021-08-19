@@ -1,6 +1,6 @@
 export const required = (v) => {
   return (
-    (v !== null && v !== undefined && (v + "").replace(" ", "") !== "") ||
+    (v !== null && v !== undefined && (v + "").replace(/ /g, "") !== "") ||
     "This field is required"
   );
 };

@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { LoginForm } from "@/components";
+import LoginForm from "@/components/auth/LoginForm";
 export default {
   name: "Login",
   components: { LoginForm },

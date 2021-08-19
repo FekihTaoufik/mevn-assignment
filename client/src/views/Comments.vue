@@ -26,7 +26,8 @@
 </template>
 
 <script>
-import { Comment, CommentInput } from "@/components";
+import Comment from "@/components/comment/Comment";
+import CommentInput from "@/components/comment/CommentInput";
 import { CommentService } from "../services";
 export default {
   name: "Comments",
@@ -50,7 +51,7 @@ export default {
     this.getComments(true);
     this.poll();
   },
-  destroyed() {
+  beforeDestroy() {
     clearTimeout(this.polling);
   },
   methods: {
@@ -74,16 +75,13 @@ export default {
     },
     send() {
       if (this.comment.body)
-        CommentService.create(this.comment)
-          .then((r) => {
-            this.comments.push(r);
-            this.$nextTick(() => {
-              this.scrollDown();
-            });
-          })
-          .then(() => {
-            this.comment.body = "";
+        CommentService.create(this.comment).then((r) => {
+          this.comments.push(r);
+          this.$nextTick(() => {
+            this.scrollDown();
           });
+          this.comment.body = "";
+        });
     },
   },
 };

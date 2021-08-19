@@ -1,7 +1,7 @@
 <template>
   <div class="d-flex">
     <div :style="{ width: '65px' }">
-      <UserAvatar :id="comment.user.id" />
+      <user-avatar class="avatar" :id="comment.user.id" />
     </div>
     <div class="flex-grow-1">
       <div class="d-flex align-center">
@@ -11,6 +11,7 @@
         <v-chip
           v-if="comment.user.role === 'admin'"
           x-small
+          data-testid="role"
           class="ml-2"
           color="amber lighten-1"
           dark
@@ -24,6 +25,7 @@
           v-if="comment.channel"
           outlined
           x-small
+          data-testid="channel"
           class="ml-2"
           color="primary lighten-1"
           dark
@@ -34,31 +36,27 @@
           }}</v-chip
         >
       </div>
-      <div class="">
+      <p data-testid="body">
         {{ comment.body }}
-      </div>
+      </p>
     </div>
   </div>
 </template>
 
 <script>
 import moment from "moment";
+import UserAvatar from "@/components/user/UserAvatar";
+
 export default {
   name: "Comment",
-  components: { UserAvatar: () => import("../user/UserAvatar") },
+  components: {
+    UserAvatar,
+  },
   props: {
     comment: {
       type: Object,
-      default: () => ({
-        createdAt: "",
-        body: "",
-        user: {
-          id: 0,
-          name: "Unknwon",
-          role: "user",
-          avatar: "https://avatars.dicebear.com/api/male/.svg",
-        },
-      }),
+      required: true,
+      default: null,
     },
   },
   methods: {

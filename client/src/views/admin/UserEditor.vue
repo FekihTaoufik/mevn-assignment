@@ -1,5 +1,5 @@
 <template>
-  <v-row class="mt-6">
+  <v-row class="mt-6 justify-center">
     <v-col cols="10" md="6">
       <v-row class="mb-6">
         <v-col class="text-h5 black--text"> User editor </v-col>
@@ -61,6 +61,7 @@
         <v-row>
           <v-col offset="4" class="mt-2">
             <v-btn
+              data-testid="submitBtn"
               class="px-10"
               color="success"
               @click="save"
@@ -163,7 +164,6 @@ export default {
         }),
         {}
       );
-      console.log(updatedUserFields);
       UserService.patch(this.user.id, updatedUserFields)
         .then(() => {
           this.$toast("User updated !", { type: "success" });

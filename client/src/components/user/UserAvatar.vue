@@ -1,5 +1,6 @@
 <template>
   <v-img
+    data-testid="avatar"
     class="elevation-2 rounded-pill d-inline-block"
     :height="height"
     :width="width"
