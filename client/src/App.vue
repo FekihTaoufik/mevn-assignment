@@ -16,7 +16,7 @@
                 }`"
                 dark
               >
-                <v-btn :to="{ name: 'Comments' }" text>
+                <v-btn exact :to="{ name: 'Comments' }" text>
                   <v-icon :left="$vuetify.breakpoint.mdAndUp"
                     >mdi-comment-text-multiple-outline</v-icon
                   >
@@ -28,13 +28,13 @@
                       $store.getters.isAuthenticated && $store.getters.isAdmin
                     "
                   >
-                    <v-btn :to="{ name: 'Users' }" text key="1">
+                    <v-btn exact :to="{ name: 'Users' }" text key="1">
                       <v-icon :left="$vuetify.breakpoint.mdAndUp"
                         >mdi-account-group</v-icon
                       >
                       <span v-if="$vuetify.breakpoint.mdAndUp"> Users </span>
                     </v-btn>
-                    <v-btn :to="{ name: 'Channels' }" text key="2">
+                    <v-btn exact :to="{ name: 'Channels' }" text key="2">
                       <v-icon :left="$vuetify.breakpoint.mdAndUp"
                         >mdi-vector-link</v-icon
                       >

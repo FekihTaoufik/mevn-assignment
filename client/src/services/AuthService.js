@@ -19,7 +19,8 @@ export default {
     return new Promise((resolve, reject) => {
       try {
         store.dispatch("unAuthenticate");
-
+        if (router.currentRoute.name !== "Comments")
+          router.push({ name: "Comments" });
         resolve();
       } catch (e) {
         reject(e);

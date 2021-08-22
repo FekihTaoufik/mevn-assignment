@@ -28,83 +28,56 @@ const retrieveOrCreateChannel = (
 }
 
 const get = async (req, res) => {
-    Comment.find()
-        .populate('user')
-        .then((comments) => {
-            res.send(comments)
-        })
-        .catch((err) => {
-            return res.status(httpStatus.BAD_REQUEST).send(err.message)
-        })
+    try {
+        const comments = await Comment.find().populate('user')
+        res.json(comments)
+    } catch (err) {
+        return res.status(httpStatus.BAD_REQUEST).json(err.message)
+    }
 }
 
-const create = (req, res) => {
+const create = async (req, res) => {
     const { body, orderId, georeferenceId } = req.body
-
-    retrieveOrCreateChannel(req.user.id, orderId, georeferenceId)
-        .then((channel) => {
-            const newComment = new Comment({
-                body,
-                orderId,
-                georeferenceId,
-                user: req.user.id,
-                channel: channel._id,
-            })
-            newComment.save((err, comment) => {
-                if (err)
-                    return res.status(httpStatus.BAD_REQUEST).send(err.message)
-
-                comment
-                    .populate('user')
-                    .execPopulate()
-                    .then((result) => {
-                        return res.send(result)
-                    })
-                    .catch((err2) => {
-                        return res
-                            .status(httpStatus.BAD_REQUEST)
-                            .send(err2.message)
-                    })
-            })
+    try {
+        const channel = await retrieveOrCreateChannel(
+            req.user.id,
+            orderId,
+            georeferenceId
+        )
+        if (!channel)
+            throw new Error("Couldn't retrieve or create the comment's channel")
+        const newComment = new Comment({
+            body,
+            orderId,
+            georeferenceId,
+            user: req.user.id,
+            channel: channel._id,
         })
-        .catch((err) => {
-            if (err) return res.status(httpStatus.BAD_REQUEST).send(err.message)
-        })
+        await newComment.save()
+        const newCommentCreated = await Comment.findById(
+            newComment._id
+        ).populate('user')
+
+        res.json(newCommentCreated)
+    } catch (err) {
+        return res.status(httpStatus.BAD_REQUEST).json(err.message)
+    }
 }
-const remove = (req, res) => {
+const remove = async (req, res) => {
     const { id } = req.params
+    try {
+        const comment = await Comment.findOne({ _id: id })
+        if (!comment) throw new Error(`Comment not found with id "${id}"`)
 
-    Comment.findOne({ _id: id }, function (err, comment) {
-        if (err) return res.status(httpStatus.BAD_REQUEST).send(err.message)
-        if (!comment)
-            return res.status(404).send(`Comment not found with id "${id}"`)
-
-        comment.remove(function (err) {
-            if (err) return res.status(httpStatus.BAD_REQUEST).send(err.message)
-            return res.status(httpStatus.NO_CONTENT).send()
-        })
-    })
-}
-
-const patch = (req, res) => {
-    const { id } = req.params
-    Comment.findOneAndUpdate(
-        { _id: id },
-        req.body,
-        { new: true },
-        function (err, comment) {
-            if (err) return res.status(httpStatus.BAD_REQUEST).send(err.message)
-
-            if (!comment)
-                return res.status(404).send(`Comment not found with id "${id}"`)
-            res.send(comment)
-        }
-    )
+        const commentRemoved = await Comment.deleteOne()
+        return res.json(commentRemoved)
+    } catch (err) {
+        return res.status(httpStatus.BAD_REQUEST).json(err.message)
+    }
 }
 
 module.exports = {
     get,
     create,
     remove,
-    patch,
 }

@@ -16,11 +16,6 @@ router
         [auth.isAuthenticated, validate(commentValidation.remove)],
         commentController.remove
     )
-    .patch(
-        '/:id',
-        [auth.isAuthenticated, validate(commentValidation.patch)],
-        commentController.patch
-    )
 
 // List channels
 // Delete channel (soft delete)

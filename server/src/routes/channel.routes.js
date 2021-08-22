@@ -6,7 +6,7 @@ const ROLES = require('../config/roles')
 const router = express.Router()
 
 // List channels
-// Delete channel (soft delete)
+// Delete channel
 
 router
     .get(

@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon src/index.js",
     "start": "node src/index.js",
-    "seed": "node src/models/seed/index.js"
+    "seed": "node src/models/seed/index.js",
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
@@ -25,10 +26,17 @@
     "moment": "^2.29.1",
     "mongoose": "^5.13.5",
     "mongoose-seed": "^0.6.0",
+    "sinon": "^11.1.2",
     "validator": "^13.6.0",
     "xss-clean": "^0.1.1"
   },
   "devDependencies": {
+    "flush-promises": "^1.0.2",
+    "jest": "^27.0.6",
+    "jest-mongoose-mock": "^1.2.0",
+    "mock-mongoose": "^8.0.1-a",
+    "mock-req-res": "^1.2.0",
+    "mongodb-memory-server": "^7.3.6",
     "nodemon": "^2.0.12"
   }
 }

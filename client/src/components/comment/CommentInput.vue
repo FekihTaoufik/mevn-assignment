@@ -7,7 +7,7 @@
       placeholder="Type your comment..."
       v-model.trim="comment.body"
       height="80"
-      @input="$emit('input', this.comment)"
+      @input="$emit('input', comment)"
       @keyup.enter="handleSend"
     >
       <template v-slot:append>
@@ -19,7 +19,7 @@
           clearable
           label="orderId"
           dense
-          @input="$emit('input', this.comment)"
+          @input="$emit('input', comment)"
           v-model="comment.orderId"
           :items="items.orderId"
           :style="{ width: '150px' }"
@@ -32,7 +32,7 @@
           clearable
           label="georefId"
           dense
-          @input="$emit('input', this.comment)"
+          @input="$emit('input', comment)"
           v-model="comment.georeferenceId"
           :items="items.georeferenceId"
           :style="{ width: '150px' }"

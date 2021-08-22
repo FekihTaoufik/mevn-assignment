@@ -3,28 +3,26 @@ const httpStatus = require('http-status')
 const { User } = require('../models')
 const _ = require('lodash')
 
+const nonAuthorizedError = Error('Not authenticated, please consider to login')
+
 const isAuthenticated = async (req, res, next) => {
     const authHeader = req.headers['authorization']
-    const token = authHeader && authHeader.split(' ')[1]
-
-    if (token == null)
-        return res
-            .status(httpStatus.UNAUTHORIZED)
-            .send('Not authenticated, please consider to login 🤷')
-
     try {
+        if (!authHeader) throw nonAuthorizedError
+
+        const token = authHeader.split(' ')[1]
+
+        if (token == null) throw nonAuthorizedError
+
         const decoded = jwt.verify(token, process.env.JWT_SECRET)
         const user = await User.findOne({ _id: decoded.id })
-        if (!user)
-            return res
-                .status(httpStatus.UNAUTHORIZED)
-                .send('Not authenticated, please consider to login 🤷')
+        if (!user) throw nonAuthorizedError
 
         req.user = _.pick(user, ['role', 'id', 'email', 'name'])
 
         return next()
     } catch (e) {
-        return res.status(httpStatus.BAD_REQUEST).send(e.message)
+        return res.status(httpStatus.UNAUTHORIZED).send(e.message)
     }
 }
 

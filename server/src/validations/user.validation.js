@@ -29,6 +29,7 @@ const patch = {
             email: Joi.string().optional().email(),
             password: Joi.string().optional().custom(password),
             name: Joi.string().optional(),
+            role: Joi.string().optional().valid('user', 'admin'),
         })
         .min(1),
 }
