@@ -7,13 +7,13 @@ jobs:
   build_vue:
     runs-on: ubuntu-latest
     name: Build Vue
-    
+    env:
+      VUE_APP_API_ROOT_URL: https://mevn-assignment.herokuapp.com/
+      VUE_APP_PUBLIC_PATH: /mevn-assignment/
     steps:
     - uses: actions/checkout@v2
     - name: Build Vue
-      env:
-        VUE_APP_API_ROOT_URL: ${{ env.VUE_APP_API_ROOT_URL }}
-        VUE_APP_PUBLIC_PATH: ${{ env.VUE_APP_PUBLIC_PATH }}
+    
       run: |
             npm install
             npm run build
