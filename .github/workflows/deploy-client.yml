@@ -13,7 +13,7 @@ jobs:
     - name: Build Vue
       env:
         VUE_APP_API_ROOT_URL: ${{ secrets.VUE_APP_API_ROOT_URL }}
-        PUBLIC_PATH: ${{ secrets.PUBLIC_PATH }}
+        VUE_APP_PUBLIC_PATH: ${{ secrets.VUE_APP_PUBLIC_PATH }}
       run: |
             npm install
             npm run build
