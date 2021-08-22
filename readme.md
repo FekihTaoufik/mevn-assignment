@@ -16,43 +16,43 @@ I'm using [Vuetify](https://vuetifyjs.com/) for a nice and smooth UI & UX.
 
 - [x] Authentication
 
-- [x] SignIn
+  - [x] SignIn
 
-- [x] SignOut
+  - [x] SignOut
 
 - [x] Roles
 
-- [x] Admin (access to channels and users)
+  - [x] Admin (access to channels and users)
 
-- [x] User (access to comments)
+  - [x] User (access to comments)
 
 - [x] Comments (all users + non authenticated)
 
-- [x] List
+  - [x] List
 
-- [x] Show associated channel
+  - [x] Show associated channel
 
-- [x] Submit (create)
+  - [x] Submit (create)
 
-- [x] Join or create channel (on submit)
+  - [x] Join or create channel (on submit)
 
 - [x] User management (admin only)
 
-- [x] List
+  - [x] List
 
-- [x] Create
+  - [x] Create
 
-- [x] Delete
+  - [x] Delete
 
-- [x] Update
+  - [x] Update
 
 - [x] Channel management (admin only)
 
-- [x] List
+  - [x] List
 
-- [x] Delete
+  - [x] Delete
 
-- [x] Delete associated comments
+  - [x] Delete associated comments
 
 ## Getting started
 
