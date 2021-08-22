@@ -10,34 +10,56 @@ This project has been deployed on github pages (client) and heroku (server).
 
 [Visit the demo on github pages](https://fekihtaoufik.github.io/mevn-assignment/)
 
+I'm using [Vuetify](https://vuetifyjs.com/) for a nice and smooth UI & UX.
+
 ## Features
 
 - [x] Authentication
-  - [x] SignIn
-  - [x] SignOut
-  - [x] Roles
-    - [x] Admin (access to channels and users)
-    - [x] User (access to comments)
+
+- [x] SignIn
+
+- [x] SignOut
+
+- [x] Roles
+
+- [x] Admin (access to channels and users)
+
+- [x] User (access to comments)
+
 - [x] Comments (all users + non authenticated)
-  - [x] List
-    - [x] Show associated channel
-  - [x] Submit (create)
-    - [x] Join or create channel (on submit)
+
+- [x] List
+
+- [x] Show associated channel
+
+- [x] Submit (create)
+
+- [x] Join or create channel (on submit)
+
 - [x] User management (admin only)
-  - [x] List
-  - [x] Create
-  - [x] Delete
-  - [x] Update
+
+- [x] List
+
+- [x] Create
+
+- [x] Delete
+
+- [x] Update
+
 - [x] Channel management (admin only)
-  - [x] List
-  - [x] Delete
-    - [x] Delete associated comments
+
+- [x] List
+
+- [x] Delete
+
+- [x] Delete associated comments
 
 ## Getting started
 
 ### Requirements
 
 - Nodejs
+
 - MongoDB
 
 ### Client
@@ -49,14 +71,19 @@ Copy the file `.env.example` and rename it to `.env`.
 **Install dependencies**
 
 ```
- cd ./client
- npm install
+
+cd ./client
+
+npm install
+
 ```
 
 **Start the app**
 
 ```
- npm run serve
+
+npm run serve
+
 ```
 
 ### Server
@@ -68,19 +95,25 @@ Copy the file `.env.example` and rename it to `.env`.
 You need to set these variables to be able to start the server
 
 - MONGODB_URL : Mongo database url
+
 - JWT_SECRET : Any random string
 
 **Install dependencies**
 
 ```
- cd ./server
- npm install
+
+cd ./server
+
+npm install
+
 ```
 
 **Start the app**
 
 ```
- npm start
+
+npm start
+
 ```
 
 ## Testing
@@ -90,7 +123,9 @@ You need to set these variables to be able to start the server
 To run the tests
 
 ```
+
 npm run test:unit
+
 ```
 
 Tests coverage
@@ -102,7 +137,9 @@ Tests coverage
 To run the tests
 
 ```
+
 npm run test
+
 ```
 
 Tests coverage
