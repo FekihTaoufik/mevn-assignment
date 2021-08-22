@@ -1,42 +1,110 @@
 # MERVN-ASSIGNMENT
 
-  ![demo screenshot](https://github.com/FekihTaoufik/mevn-assignment/blob/master/images/demo.png?raw=true)
+![demo screenshot](https://github.com/FekihTaoufik/mevn-assignment/blob/master/images/demo.png?raw=true)
 
-## Demonstration
+This is a MongoDB, Express, VueJs and Nodejs application made for an evaluation assignment.
+
+## Demo
 
 This project has been deployed on github pages (client) and heroku (server).
 
+[Visit the demo on github pages](https://fekihtaoufik.github.io/mevn-assignment/)
 
+## Features
 
+- [x] Authentication
+  - [x] SignIn
+  - [x] SignOut
+  - [x] Roles
+    - [x] Admin (access to channels and users)
+    - [x] User (access to comments)
+- [x] Comments (all users + non authenticated)
+  - [x] List
+    - [x] Show associated channel
+  - [x] Submit (create)
+    - [x] Join or create channel (on submit)
+- [x] User management (admin only)
+  - [x] List
+  - [x] Create
+  - [x] Delete
+  - [x] Update
+- [x] Channel management (admin only)
+  - [x] List
+  - [x] Delete
+    - [x] Delete associated comments
 
-## Installation
+## Getting started
 
-Download to your project directory, add `README.md`, and commit:
+### Requirements
 
-```sh
-curl -LO http://git.io/Xy0Chg
-git add README.md
-git commit -m "Use README Boilerplate"
+- Nodejs
+- MongoDB
+
+### Client
+
+**Set up your environment variables**
+
+Copy the file `.env.example` and rename it to `.env`.
+
+**Install dependencies**
+
+```
+ cd ./client
+ npm install
 ```
 
-## Usage
+**Start the app**
 
-Replace the contents of `README.md` with your project's:
+```
+ npm run serve
+```
 
-- Name
-- Description
-- Installation instructions
-- Usage instructions
-- Support instructions
-- Contributing instructions
-- Licence
+### Server
 
-Feel free to remove any sections that aren't applicable to your project.
+**Set up your environment variables**
 
-## Support
+Copy the file `.env.example` and rename it to `.env`.
 
-Please [open an issue](https://github.com/fraction/readme-boilerplate/issues/new) for support.
+You need to set these variables to be able to start the server
 
-## Contributing
+- MONGODB_URL : Mongo database url
+- JWT_SECRET : Any random string
 
-Please contribute using [Github Flow](https://guides.github.com/introduction/flow/). Create a branch, add commits, and [open a pull request](https://github.com/fraction/readme-boilerplate/compare/).
+**Install dependencies**
+
+```
+ cd ./server
+ npm install
+```
+
+**Start the app**
+
+```
+ npm start
+```
+
+## Testing
+
+### Client
+
+To run the tests
+
+```
+npm run test:unit
+```
+
+Tests coverage
+
+![Client coverage](https://github.com/FekihTaoufik/mevn-assignment/blob/master/images/client-coverage.png?raw=true)
+
+### Server
+
+To run the tests
+
+```
+npm run test
+```
+
+Tests coverage
+
+![Client coverage](https://github.com/FekihTaoufik/mevn-assignment/blob/master/images/server-coverage.png?raw=true)
