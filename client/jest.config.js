@@ -4,6 +4,7 @@ module.exports = {
   collectCoverage: true,
   collectCoverageFrom: [
     "src/{utils,components,views}/**/*.{js,vue}",
+    "src/*.vue",
     "!src/**/index.js",
   ],
 };
