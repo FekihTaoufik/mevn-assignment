@@ -2,6 +2,7 @@ const { Channel, Comment } = require('../models')
 const httpStatus = require('http-status')
 const get = async (req, res) => {
     try {
+        // Counting comments with every channel
         const channels = await Channel.aggregate([
             {
                 $lookup: {

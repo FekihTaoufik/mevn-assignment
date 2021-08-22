@@ -40,7 +40,7 @@ describe('Comment controller', () => {
         const userCreated = await User.create(userToCreate)
         user = await User.findById(userCreated._id)
     })
-    it('should list comments', async () => {
+    it('should list created comments', async () => {
         await Comment.create(
             commentsToCreate.map((c) => ({ ...c, user: user._id }))
         )

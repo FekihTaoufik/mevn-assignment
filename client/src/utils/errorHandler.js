@@ -1,3 +1,4 @@
+// Handling List of errors into a toast message
 export const errorHandler = (vue, err, reject = null) => {
   let messages = err.response.data;
   if (Array.isArray(messages)) messages = messages.join("\n");

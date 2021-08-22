@@ -21,26 +21,8 @@ const get = {
         sortBy: Joi.string().optional(),
     }),
 }
-const patch = {
-    params: Joi.object().keys({
-        id: Joi.required().custom(objectId),
-    }),
-    body: Joi.object()
-        .keys({
-            body: Joi.string(),
-        })
-        .min(1),
-}
-
-const remove = {
-    params: Joi.object().keys({
-        id: Joi.string().custom(objectId),
-    }),
-}
 
 module.exports = {
     create,
     get,
-    patch,
-    remove,
 }

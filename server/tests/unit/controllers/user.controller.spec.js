@@ -34,7 +34,7 @@ describe('User controller', () => {
 
         req = { body: {}, params: {} }
     })
-    it('should list users', async () => {
+    it('should list created users', async () => {
         await User.create(usersToCreate)
         const usersFound = await User.find()
 

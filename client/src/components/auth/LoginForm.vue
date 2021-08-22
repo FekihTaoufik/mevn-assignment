@@ -72,6 +72,7 @@ export default {
       isLoading: false,
       isFormValid: true,
       inputPasswordType: "password",
+      // validation rules
       rules: {
         email: [required, email],
         password: [required],

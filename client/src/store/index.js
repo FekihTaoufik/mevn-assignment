@@ -9,6 +9,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     user: null,
+    // Api token
     token: null,
   },
   mutations: {
@@ -41,6 +42,7 @@ export default new Vuex.Store({
     },
   },
   modules: {},
+  // Making store persistent + encrypting token and user in localStorage to make it unreadable
   plugins: [
     createPersistedState({
       paths: ["token", "user"],

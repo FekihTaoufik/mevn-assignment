@@ -28,6 +28,7 @@ export default {
   },
   computed: {
     src() {
+      //  Mocking user avatar with id
       return `https://avatars.dicebear.com/api/human/${this.id}.svg?r=50`;
     },
   },

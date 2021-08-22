@@ -33,7 +33,7 @@ describe('Channel controller', () => {
         const userCreated = await User.create(userToCreate)
         user = await User.findById(userCreated._id)
     })
-    it('should list channels', async () => {
+    it('should list created channels', async () => {
         await Channel.create(
             channelsToCreate.map((c) => ({ ...c, user: user._id }))
         )

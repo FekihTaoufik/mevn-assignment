@@ -11,13 +11,5 @@ router
         [auth.isAuthenticated, validate(commentValidation.create)],
         commentController.create
     )
-    .delete(
-        '/:id',
-        [auth.isAuthenticated, validate(commentValidation.remove)],
-        commentController.remove
-    )
-
-// List channels
-// Delete channel (soft delete)
 
 module.exports = router

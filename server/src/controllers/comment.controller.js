@@ -7,17 +7,24 @@ const retrieveOrCreateChannel = (
     georeferenceId = null
 ) => {
     return new Promise((resolve, reject) => {
+        // Looking for channel that user, orderId and georefId
         Channel.findOne(
-            { user, orderId, georeferenceId },
+            {
+                user,
+                orderId,
+                georeferenceId
+            },
             (err, foundChannel) => {
                 if (err) return reject(err)
-
+                // return it if found
                 if (foundChannel) return resolve(foundChannel)
                 else {
+                    // Else create it
                     Channel.create(
                         { user, orderId, georeferenceId },
                         (err2, createdChannel) => {
                             if (err2) return reject(err2)
+                            // And return it
                             return resolve(createdChannel)
                         }
                     )
