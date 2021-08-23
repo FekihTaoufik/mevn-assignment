@@ -116,6 +116,8 @@ npm start
 
 ```
 
+Here you can find [the postman documentation](https://documenter.getpostman.com/view/7998524/TzzEmYwG) of the API endpoints.
+
 ## Testing
 
 ### Client
