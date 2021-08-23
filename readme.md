@@ -1,4 +1,4 @@
-# MERVN-ASSIGNMENT
+# MEVN-ASSIGNMENT
 
 ![demo screenshot](https://github.com/FekihTaoufik/mevn-assignment/blob/master/images/demo.png?raw=true)
 
